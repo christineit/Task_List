@@ -24,33 +24,38 @@ function loadEventListeners() {
 // Add Task
 function addTask(e) {
     if (taskInput.value === '') {
-        alert('Add a task')
+        const addTaskMessage = 'Add a task'
+        document.querySelector('#exampleModal').textContent = addTaskMessage
+        // document.querySelector('#aria-hidden').setAttribute('aria-hidden', 'false')
+        $('#exampleModal').modal('toggle')
+        // alert('Add a task')
+    } else {
+        // Create li element
+        const li = document.createElement('li');
+        // Add class
+        li.className = 'collection-item'
+        // Create text node and append to li
+        li.appendChild(document.createTextNode(taskInput.value))
+        // Create new link element
+        const link = document.createElement('a')
+        // Add class
+        link.className = 'delete-item secondary-content'
+        // Add icon html
+        link.innerHTML = '<i class = "fas fa-check"></i>'
+        //Append the link to the li
+        li.appendChild(link);
+
+        // Append li to ul
+        taskList.appendChild(li)
+
+        //Clear input
+        taskInput.value = '';
+
+        // console.log(li);
+
+
+        e.preventDefault();
     }
-    // Create li element
-    const li = document.createElement('li');
-    // Add class
-    li.className = 'collection-item'
-    // Create text node and append to li
-    li.appendChild(document.createTextNode(taskInput.value))
-    // Create new link element
-    const link = document.createElement('a')
-    // Add class
-    link.className = 'delete-item secondary-content'
-    // Add icon html
-    link.innerHTML = '<i class = "fas fa-check"></i>'
-    //Append the link to the li
-    li.appendChild(link);
-
-    // Append li to ul
-    taskList.appendChild(li)
-
-    //Clear input
-    taskInput.value = '';
-
-    // console.log(li);
-
-
-    e.preventDefault();
 }
 
 
