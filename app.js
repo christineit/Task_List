@@ -24,10 +24,10 @@ function loadEventListeners() {
 // Add Task
 function addTask(e) {
     if (taskInput.value === '') {
-        const addTaskMessage = 'Add a task'
-        document.querySelector('#exampleModal').textContent = addTaskMessage
-        // document.querySelector('#aria-hidden').setAttribute('aria-hidden', 'false')
+        const addTaskMessage = 'Add a task!'
         $('#exampleModal').modal('toggle')
+        // document.getElementById('exampleModal').modal('toggle') // cannot use this method b/c specific to Bootstrap/jQuery
+        document.querySelector('.modal-body').textContent = addTaskMessage
         // alert('Add a task')
     } else {
         // Create li element
