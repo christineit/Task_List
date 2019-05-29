@@ -16,7 +16,9 @@ function loadEventListeners() {
     // Remove task event 
     taskList.addEventListener('click', removeTask);
     // Clear task event
-    clearBtn.addEventListener('click', clearTasks)
+    clearBtn.addEventListener('click', clearTasks);
+    //Filter task event
+    filter.addEventListener('input', filterTasks);
 }
 
 // Add Task
@@ -64,5 +66,27 @@ function removeTask(e) {
 
 // Clear Tasks function
 function clearTasks() {
-    taskList.innerHTML = ''
+    // taskList.innerHTML = ''
+
+    // Faster
+    while (taskList.firstChild) {
+        console.log(taskList.firstChild);
+        taskList.removeChild(taskList.firstChild);
+    }
+}
+
+// Filter tasks
+function filterTasks(e) {
+    const text = e.target.value.toLowerCase();
+    // console.log(text);
+    document.querySelectorAll('.collection-item').forEach(function (task) {
+        const item = task.firstChild.textContent;
+        console.log(item);
+
+        if (item.toLowerCase().indexOf(text) != -1) {
+            task.style.display = 'block';
+        } else {
+            task.style.display = 'none';
+        }
+    });
 }
